@@ -6,7 +6,7 @@ base_url = "https://api.sirv.com"
 
 def get_access(clientId, clientSecret):
 
-	from file_handling import retrieve_time, retrieve_access_token, store_time, store_access_token
+	from .file_handling import retrieve_time, retrieve_access_token, store_time, store_access_token
 	time_elapsed = (time.time() - retrieve_time())/60#find time elapsed in minutes
 
 	if time_elapsed > 20:
