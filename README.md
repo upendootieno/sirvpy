@@ -1,7 +1,7 @@
 # SirvPy
 SirvPy is a python library for accessing the Sirv REST API
 
-##Installation:
+## Installation:
 
 	pip install -i https://test.pypi.org/simple/ SirvPy==0.1.0
 
@@ -9,11 +9,11 @@ Import all SirvPy functions you'll need to use in your app.
 
 	from SirvPy import get_access, upload_files
 	
-##Usage:
+## Usage:
 
 SirvPy saves you the pain of dealing with encoding and conversions between different types returned by Sirv upon making API calls.
 
-###Endpoints:
+### Endpoints:
 
 **1: Requesting Access tokens from Sirv**
 
