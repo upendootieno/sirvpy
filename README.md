@@ -3,7 +3,7 @@ SirvPy is a python library for accessing the Sirv REST API
 
 Installation:
 
-	pip install -i https://test.pypi.org/simple/ SirvPy==0.0.7
+	pip install -i https://test.pypi.org/simple/ SirvPy==0.0.9
 
 Import all SirvPy functions you'll need to use in your app.
 

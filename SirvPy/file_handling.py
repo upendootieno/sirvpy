@@ -1,8 +1,11 @@
 import os
-access_token_file = os.path.abspath('access_token.txt')
-timestamp_file = os.path.abspath('token_timestamp.txt')
-print(access_token_file)
-print(timestamp_file)
+import SirvPy
+base_path = os.path.dirname(SirvPy.__file__)#Find the dir where the package is
+access_token_file = base_path + '/access_tokens.txt'
+timestamp_file = base_path + '/token_timestamp.txt'
+#print(access_token_file)#
+#print(timestamp_file)
+
 def retrieve_access_token():
 	f_read = open(access_token_file, 'r')
 	access_token = str(f_read.read().strip())
