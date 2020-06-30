@@ -56,10 +56,10 @@ def upload_files(access_token, local_file, upload_path):
 
 	return sirv_api_request
 
-def search_files(access_token):
+def search_files(access_token, extension):
 	endpoint = base_url + "/v2/files/search"
 	headers = {'Content-Type' : 'application/json', 'authorization': 'bearer {}'.format(access_token)}
-	payload = {'query': 'basename:*.jpg'}
-	sirv_api_request = requests.post(endpoint, headers = headers, json = payload)
+	payload = {'query': 'basename:*.{}'.format(extension)}
+	sirv_api_request = convert(requests.post(endpoint, headers = headers, json = payload))
 
 	return sirv_api_request

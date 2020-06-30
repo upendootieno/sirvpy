@@ -3,7 +3,7 @@ SirvPy is a python library for accessing the Sirv REST API
 
 ## Installation:
 
-	pip install -i https://test.pypi.org/simple/ SirvPy==0.1.1
+	pip install -i https://test.pypi.org/simple/ SirvPy==0.1.2
 
 Import all SirvPy functions you'll need to use in your app.
 
@@ -69,3 +69,19 @@ views.py
 			upload_files(access_token, request.FILES['file_upload'], upload_path)
 	
 		return render(request, 'myhtml.html')
+
+**3: Searching for files**
+
+Sirv's rest API offers a very wide range of options to search for files. For this reason, the latest version of SirvPy only supports searching of files by extension. For instance, .jpg for jpeg image files.
+
+To search for files, call the 'search_files()' function and pass the following arguments;
+i)  Access token
+ii) Search query - for now, this is the file extension you want to search for
+
+You can look up all the other queries that you can write here; https://api.sirv.com/v2/docs?path=/v2/files/search#POST
+
+*example use;*
+
+	search_files(access_token, 'jpg')
+
+The return type is a dictionary.
