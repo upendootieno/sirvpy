@@ -1,13 +1,13 @@
 import requests
 import time
-import ast #for conversion of str to dict
+import json #for parsing str into dict
 
 base_url = "https://api.sirv.com"
 
 #This function converts the response returned by API call to dict
 def convert(response):
 	byte_object = response.content
-	content_dict = ast.literal_eval(byte_object.decode())#convert bytecode to str, then str to dict
+	content_dict = json.loads(byte_object.decode())#convert bytecode to str, then str to dict
 	return content_dict
 
 def get_access(clientId, clientSecret):
@@ -21,15 +21,13 @@ def get_access(clientId, clientSecret):
 		payload = { 'clientId': clientId,'clientSecret': clientSecret }
 		headers = {'Content-Type' : 'application/json'}
 		endpoint = base_url + "/v2/token"
-		sirv_api_request = convert(requests.post(endpoint, headers = headers, json = payload))#make request and convert response to dict
-		#byte_object = sirv_api_request.content
-		#content_dict = ast.literal_eval(byte_object.decode())#convert bytecode to str, then str to dict		
+		sirv_api_request = convert(requests.post(endpoint, headers = headers, json = payload))#make request and convert response to dict		
 		store_access_token(sirv_api_request)#save the dictionary returned as str
 		store_time(time.time())#store current epoch time
 
 	else:
 		print("Unexpired token present; Retrieving...\n token expires in {} minutes".format(str(20 - time_elapsed)))
-		sirv_api_request = ast.literal_eval(retrieve_access_token())#retrieve the string and convert to dict
+		sirv_api_request = json(retrieve_access_token())#retrieve the string and convert to dict
 
 	return sirv_api_request
 
@@ -56,10 +54,10 @@ def upload_files(access_token, local_file, upload_path):
 
 	return sirv_api_request
 
-def search_files(access_token, extension):
+def search_files(access_token):
 	endpoint = base_url + "/v2/files/search"
 	headers = {'Content-Type' : 'application/json', 'authorization': 'bearer {}'.format(access_token)}
-	payload = {'query': 'basename:*.{}'.format(extension)}
+	payload = {'query': 'basename:*'}
 	sirv_api_request = convert(requests.post(endpoint, headers = headers, json = payload))
 
 	return sirv_api_request
