@@ -1,7 +1,7 @@
 import os
 import SirvPy
 base_path = os.path.dirname(SirvPy.__file__)#Find the dir where the package is
-access_token_file = base_path + '/access_tokens.txt'
+access_token_file = base_path + '/access_token.txt'
 timestamp_file = base_path + '/token_timestamp.txt'
 #print(access_token_file)#
 #print(timestamp_file)
