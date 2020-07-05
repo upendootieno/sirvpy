@@ -1,13 +1,13 @@
 import requests
 import time
 import json #for parsing str into dict
+import ast #for parsing single quote "json" to dict
 
 base_url = "https://api.sirv.com"
 
 #This function converts the response returned by API call to dict
 def convert(response):
-	byte_object = response.content
-	content_dict = json.loads(byte_object.decode())#convert bytecode to str, then str to dict
+	content_dict = json.loads(response.content)
 	return content_dict
 
 def get_access(clientId, clientSecret):
@@ -18,8 +18,8 @@ def get_access(clientId, clientSecret):
 	if time_elapsed > 20:
 
 		print("Getting new token")
-		payload = { 'clientId': clientId,'clientSecret': clientSecret }
-		headers = {'Content-Type' : 'application/json'}
+		payload = { "clientId": clientId,"clientSecret": clientSecret }
+		headers = {"Content-Type" : "application/json"}
 		endpoint = base_url + "/v2/token"
 		sirv_api_request = convert(requests.post(endpoint, headers = headers, json = payload))#make request and convert response to dict		
 		store_access_token(sirv_api_request)#save the dictionary returned as str
@@ -27,15 +27,15 @@ def get_access(clientId, clientSecret):
 
 	else:
 		print("Unexpired token present; Retrieving...\n token expires in {} minutes".format(str(20 - time_elapsed)))
-		sirv_api_request = json(retrieve_access_token())#retrieve the string and convert to dict
+		sirv_api_request = ast.literal_eval(retrieve_access_token())#retrieve the string and convert to dict
 
 	return sirv_api_request
 
 
 def upload_files(access_token, local_file, upload_path):
 	endpoint = base_url + "/v2/files/upload"
-	headers = {'Content-Type' : 'image/jpeg', 'authorization': 'bearer {}'.format(access_token)}
-	upload_path = {'filename': upload_path}#The path to which the file will be uploaded TBD
+	headers = {"Content-Type" : "image/jpeg", "authorization": "bearer {}".format(access_token)}
+	upload_path = {"filename": upload_path}#The path to which the file will be uploaded TBD
 
 	if str(local_file.__class__) == "<class 'str'>":
 		print("User passed a File Path")
@@ -56,8 +56,22 @@ def upload_files(access_token, local_file, upload_path):
 
 def search_files(access_token):
 	endpoint = base_url + "/v2/files/search"
-	headers = {'Content-Type' : 'application/json', 'authorization': 'bearer {}'.format(access_token)}
-	payload = {'query': 'basename:*'}
+	headers = {"Content-Type" : "application/json", "authorization": "bearer {}".format(access_token)}
+	payload = {"query": "basename:*"}
 	sirv_api_request = convert(requests.post(endpoint, headers = headers, json = payload))
+
+	return sirv_api_request
+
+def storage_info(access_token):
+	endpoint = base_url + "/v2/account/storage"
+	headers = {"Content-Type" : "application/json", "authorization": "bearer {}".format(access_token)}
+	sirv_api_request = convert(requests.get(endpoint, headers))
+
+	return sirv_api_request
+
+def storage_stats(access_token):
+	endpoint = base_url + "/v2/stats/storage"
+	headers = {"Content-Type" : "application/json", "authorization": "bearer {}".format(access_token)}
+	sirv_api_request = convert(requests.get(endpoint, headers))
 
 	return sirv_api_request

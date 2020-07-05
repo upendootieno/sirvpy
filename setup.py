@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="SirvPy",
-    version="0.1.35",
+    version="0.1.49",
     author="TechniCollins",
     author_email="technicollins.business@gmail.com",
     description="A python library for the Sirv REST API",
