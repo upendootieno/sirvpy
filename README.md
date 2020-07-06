@@ -3,7 +3,7 @@ SirvPy is a python library for accessing the Sirv REST API
 
 ## Installation:
 
-	pip install -i https://test.pypi.org/simple/ SirvPy==0.1.49
+	pip install -i https://test.pypi.org/simple/ SirvPy==0.1.5
 
 Import all SirvPy functions you'll need to use in your app.
 
@@ -81,3 +81,9 @@ To search for files, call the 'search_files()' function and pass the your access
 	search_files(access_token)
 
 The return type is a dictionary of all files in the authenticated user's account.
+
+** 4: Checking Storage stats**
+storage_stats(access_token)
+
+** 5: Checking Storage info**
+storage_info(access_token)
