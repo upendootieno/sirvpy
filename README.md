@@ -3,7 +3,7 @@ SirvPy is a python library for accessing the Sirv REST API
 
 ## Installation:
 
-	pip install -i https://test.pypi.org/simple/ SirvPy==0.1.52
+	pip install -i https://test.pypi.org/simple/ SirvPy==0.1.55
 
 Import all SirvPy functions you'll need to use in your app.
 
@@ -89,3 +89,23 @@ The return type is a dictionary of all files in the authenticated user's account
 **5: Checking Storage info**
 
 	storage_info(access_token)
+
+**6: Checking account info**
+
+	account_info(access_token)
+
+**7: Getting users**
+	
+	get_users(access_token)
+
+**8: Get API usage limits**
+
+	get_limits(access_token)
+
+**9: Get Billing info**
+
+	billing_info(access_token)
+
+**10: Get Transfer Stats**
+
+	transfer_stats(access_token)

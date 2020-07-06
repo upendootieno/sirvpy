@@ -75,3 +75,38 @@ def storage_stats(access_token):
 	sirv_api_request = convert(requests.get(endpoint, headers))
 
 	return sirv_api_request
+
+def account_info(access_token):
+	endpoint = base_url + "/v2/account"
+	headers = {"Content-Type" : "application/json", "authorization": "bearer {}".format(access_token)}
+	sirv_api_request = convert(requests.get(endpoint, headers))
+
+	return sirv_api_request
+
+def get_users(access_token):
+	endpoint = base_url + "/v2/account/users"
+	headers = {"Content-Type" : "application/json", "authorization": "bearer {}".format(access_token)}
+	sirv_api_request = convert(requests.get(endpoint, headers))
+
+	return sirv_api_request
+
+def get_limits(access_token):
+	endpoint = base_url + "/v2/account/limits"
+	headers = {"Content-Type" : "application/json", "authorization": "bearer {}".format(access_token)}
+	sirv_api_request = convert(requests.get(endpoint, headers))
+
+	return sirv_api_request
+
+def billing_info(access_token):
+	endpoint = base_url + "/v2/billing/plan"
+	headers = {"Content-Type" : "application/json", "authorization": "bearer {}".format(access_token)}
+	sirv_api_request = convert(requests.get(endpoint, headers))
+
+	return sirv_api_request
+
+def transfer_stats(access_token):
+	endpoint = base_url + "/v2/stats/http"
+	headers = {"Content-Type" : "application/json", "authorization": "bearer {}".format(access_token)}
+	sirv_api_request = convert(requests.get(endpoint, headers))
+
+	return sirv_api_request
