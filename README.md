@@ -83,7 +83,9 @@ To search for files, call the 'search_files()' function and pass the your access
 The return type is a dictionary of all files in the authenticated user's account.
 
 **4: Checking Storage stats**
-storage_stats(access_token)
+
+	storage_stats(access_token)
 
 **5: Checking Storage info**
-storage_info(access_token)
+
+	storage_info(access_token)
