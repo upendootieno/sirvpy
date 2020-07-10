@@ -110,3 +110,11 @@ def transfer_stats(access_token):
 	sirv_api_request = convert(requests.get(endpoint, headers))
 
 	return sirv_api_request
+
+def account_events(access_token):
+	endpoint = base_url + "/v2/account/events/search"
+	headers = {"Content-Type" : "application/json", "authorization": "bearer {}".format(access_token)}
+	payload = {"level" : "info", "module" : "", "level" : "", "type" : ""}
+	sirv_api_request = convert(requests.get(endpoint, headers, json = payload))
+
+	return sirv_api_request
