@@ -65,56 +65,88 @@ def search_files(access_token):
 def storage_info(access_token):
 	endpoint = base_url + "/v2/account/storage"
 	headers = {"Content-Type" : "application/json", "authorization": "bearer {}".format(access_token)}
-	sirv_api_request = convert(requests.get(endpoint, headers))
+	sirv_api_request = convert(requests.get(endpoint, headers = headers))
 
 	return sirv_api_request
 
 def storage_stats(access_token):
 	endpoint = base_url + "/v2/stats/storage"
 	headers = {"Content-Type" : "application/json", "authorization": "bearer {}".format(access_token)}
-	sirv_api_request = convert(requests.get(endpoint, headers))
+	sirv_api_request = convert(requests.get(endpoint, headers = headers))
 
 	return sirv_api_request
 
 def account_info(access_token):
 	endpoint = base_url + "/v2/account"
 	headers = {"Content-Type" : "application/json", "authorization": "bearer {}".format(access_token)}
-	sirv_api_request = convert(requests.get(endpoint, headers))
+	sirv_api_request = convert(requests.get(endpoint, headers = headers))
 
 	return sirv_api_request
 
 def get_users(access_token):
 	endpoint = base_url + "/v2/account/users"
 	headers = {"Content-Type" : "application/json", "authorization": "bearer {}".format(access_token)}
-	sirv_api_request = convert(requests.get(endpoint, headers))
+	sirv_api_request = convert(requests.get(endpoint, headers = headers))
 
 	return sirv_api_request
 
 def get_limits(access_token):
 	endpoint = base_url + "/v2/account/limits"
 	headers = {"Content-Type" : "application/json", "authorization": "bearer {}".format(access_token)}
-	sirv_api_request = convert(requests.get(endpoint, headers))
+	sirv_api_request = convert(requests.get(endpoint, headers = headers))
 
 	return sirv_api_request
 
 def billing_info(access_token):
 	endpoint = base_url + "/v2/billing/plan"
 	headers = {"Content-Type" : "application/json", "authorization": "bearer {}".format(access_token)}
-	sirv_api_request = convert(requests.get(endpoint, headers))
+	sirv_api_request = convert(requests.get(endpoint, headers = headers))
 
 	return sirv_api_request
 
 def transfer_stats(access_token):
 	endpoint = base_url + "/v2/stats/http"
 	headers = {"Content-Type" : "application/json", "authorization": "bearer {}".format(access_token)}
-	sirv_api_request = convert(requests.get(endpoint, headers))
+	sirv_api_request = convert(requests.get(endpoint, headers = headers))
 
 	return sirv_api_request
 
 def account_events(access_token):
 	endpoint = base_url + "/v2/account/events/search"
 	headers = {"Content-Type" : "application/json", "authorization": "bearer {}".format(access_token)}
-	payload = {"level" : "info", "module" : "", "level" : "", "type" : ""}
-	sirv_api_request = convert(requests.get(endpoint, headers, json = payload))
+	#payload = {"level" : "info", "module" : "", "level" : "", "type" : ""}
+	payload = {"level" : "info"}
+	sirv_api_request = convert(requests.post(endpoint, headers = headers, json = payload))
+
+	return sirv_api_request
+
+def get_user_info(access_token, user_id):
+	endpoint = base_url + "/v2/user"
+	headers = {"Content-Type" : "application/json", "authorization": "bearer {}".format(access_token)}
+	payload = {"userId": user_id}
+	sirv_api_request = convert(requests.get(endpoint, headers = headers, params = payload))
+
+	return sirv_api_request
+
+def get_spins_views(access_token):
+	endpoint = base_url + "/v2/stats/spins/views"
+	headers = {"Content-Type" : "application/json", "authorization": "bearer {}".format(access_token)}
+	sirv_api_request = convert(requests.get(endpoint, headers = headers))
+
+	return sirv_api_request
+
+def convert_to_spin(access_token, filename):
+	endpoint = base_url + "/v2/files/video2spin"
+	headers = {"Content-Type" : "application/json", "authorization": "bearer {}".format(access_token)}
+	payload = {"filename": filename, "options": {"start" : 0, "end" : 3, "frames" : 30}}#The name and path of the file to spin
+	sirv_api_request = convert(requests.post(endpoint, headers = headers, json = payload))
+
+	return sirv_api_request
+
+def convert_to_video(access_token, filename):
+	endpoint = base_url + "/v2/files/spin2video"
+	headers = {"Content-Type" : "application/json", "authorization": "bearer {}".format(access_token)}
+	payload = {"filename": filename, "options": {"width" : 1920, "height" : 1080, "loops" : 10, "row": "single"}}#The name and path of the file to spin
+	sirv_api_request = convert(requests.post(endpoint, headers = headers, json = payload))
 
 	return sirv_api_request

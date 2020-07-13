@@ -3,7 +3,7 @@ SirvPy is a python library for accessing the Sirv REST API
 
 ## Installation:
 
-	pip install -i https://test.pypi.org/simple/ SirvPy==0.1.59
+	pip install -i https://test.pypi.org/simple/ SirvPy==0.1.64
 
 Import all SirvPy functions you'll need to use in your app.
 
@@ -113,3 +113,23 @@ The return type is a dictionary of all files in the authenticated user's account
 **11: Account Events**
 
 	account_events(access_token)
+
+**12: Get user info**
+
+user_id is one of the parameters and can be acquired by calling the get_users() function
+
+	get_user_info(access_token, user_id)
+
+**13: Get Spins Views**
+
+	get_spins_views(access_token)
+
+**14: Convert Video To Spin**
+
+Specify the video file you want to spin.
+
+	convert_to_spin(access_token, "/path/to/video/file")
+
+**15: Convert spin to video**
+
+	convert_to_video(access_token)
