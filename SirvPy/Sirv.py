@@ -150,3 +150,162 @@ def convert_to_video(access_token, filename):
 	sirv_api_request = convert(requests.post(endpoint, headers = headers, json = payload))
 
 	return sirv_api_request
+
+def fetch_url(access_token, url, filename):
+	endpoint = base_url + "/v2/files/fetch"
+	headers = {"Content-Type" : "application/json", "authorization": "bearer {}".format(access_token)}
+	payload = {"url" : url, "filename" : filename}#The name and path of the file to spin
+	sirv_api_request = convert(requests.post(endpoint, headers = headers, json = payload))
+
+	return sirv_api_request
+
+def get_folder_options(access_token, filename):
+	endpoint = base_url + "/v2/files/options"
+	headers = {"Content-Type" : "application/json", "authorization": "bearer {}".format(access_token)}
+	payload = {"filename" : filename}
+	sirv_api_request = convert(requests.get(endpoint, headers = headers, params = payload))
+
+	return sirv_api_request
+
+def set_folder_options(access_token, filename):
+	endpoint = base_url + "/v2/files/options"
+	headers = {"Content-Type" : "application/json", "authorization": "bearer {}".format(access_token)}
+	payload = {"filename" : filename}
+	query = {"scanSpins": True, "nameSpinsAfterFolder": True, "allowListing": True}
+	sirv_api_request = requests.post(endpoint, headers = headers, params = payload, json = query)
+
+	return sirv_api_request
+
+def get_meta_description(access_token, filename):
+	endpoint = base_url + "/v2/files/meta/description"
+	headers = {"Content-Type" : "application/json", "authorization": "bearer {}".format(access_token)}
+	payload = {"filename" : filename}
+	sirv_api_request = convert(requests.get(endpoint, headers = headers, params = payload))
+
+	return sirv_api_request
+
+def set_meta_description(access_token, filename, description):
+	endpoint = base_url + "/v2/files/meta/description"
+	headers = {"Content-Type" : "application/json", "authorization": "bearer {}".format(access_token)}
+	payload = {"description" : description}
+	query = {"filename" : filename}
+	sirv_api_request = requests.post(endpoint, headers = headers, params = query, json = payload)
+
+	return sirv_api_request
+
+def get_meta_title(access_token, filename):
+	endpoint = base_url + "/v2/files/meta/title"
+	headers = {"Content-Type" : "application/json", "authorization": "bearer {}".format(access_token)}
+	payload = {"filename" : filename}
+	sirv_api_request = convert(requests.get(endpoint, headers = headers, params = payload))
+
+	return sirv_api_request
+
+def set_meta_title(access_token, filename, title):
+	endpoint = base_url + "/v2/files/meta/title"
+	headers = {"Content-Type" : "application/json", "authorization": "bearer {}".format(access_token)}
+	payload = {"title" : title}
+	query = {"filename" : filename}
+	sirv_api_request = requests.post(endpoint, headers = headers, params = query, json = payload)
+
+	return sirv_api_request
+
+def get_file_meta_tags(access_token, filename):
+	endpoint = base_url + "/v2/files/meta/tags"
+	headers = {"Content-Type" : "application/json", "authorization": "bearer {}".format(access_token)}
+	payload = {"filename" : filename}
+	sirv_api_request = convert(requests.get(endpoint, headers = headers, params = payload))
+
+	return sirv_api_request
+
+def add_file_meta_tags(access_token, filename, tags):
+	endpoint = base_url + "/v2/files/meta/tags"
+	headers = {"Content-Type" : "application/json", "authorization": "bearer {}".format(access_token)}
+	payload = {"tags" : tags}
+	query = {"filename" : filename}
+	sirv_api_request = requests.post(endpoint, headers = headers, params = query, json = payload)
+
+	return sirv_api_request
+
+def delete_file_meta_tags(access_token, filename, tags):
+	endpoint = base_url + "/v2/files/meta/tags"
+	headers = {"Content-Type" : "application/json", "authorization": "bearer {}".format(access_token)}
+	payload = {"tags" : tags}
+	query = {"filename" : filename}
+	sirv_api_request = requests.delete(endpoint, headers = headers, params = query, json = payload)
+
+	return sirv_api_request
+
+def get_approval_flag(access_token, filename):
+	endpoint = base_url + "/v2/files/meta/approval"
+	headers = {"Content-Type" : "application/json", "authorization": "bearer {}".format(access_token)}
+	payload = {"filename" : filename}
+	sirv_api_request = convert(requests.get(endpoint, headers = headers, params = payload))
+
+	return sirv_api_request
+
+def set_approval_flag(access_token, filename, approved, comment):
+	endpoint = base_url + "/v2/files/meta/approval"
+	headers = {"Content-Type" : "application/json", "authorization": "bearer {}".format(access_token)}
+	payload = {"approved" : approved, "comment": comment}
+	query = {"filename" : filename}
+	sirv_api_request = requests.post(endpoint, headers = headers, params = query, json = payload)
+
+	return sirv_api_request
+
+def delete_file(access_token, filename):
+	endpoint = base_url + "/v2/files/delete"
+	headers = {"Content-Type" : "application/json", "authorization": "bearer {}".format(access_token)}
+	payload = {"filename" : filename}
+	sirv_api_request = requests.post(endpoint, headers = headers, params = payload)
+
+	return sirv_api_request
+
+def copy_file(access_token, copy_from, copy_to):
+	endpoint = base_url + "/v2/files/copy"
+	headers = {"Content-Type" : "application/json", "authorization": "bearer {}".format(access_token)}
+	payload = {"from" : copy_from, "to" : copy_to}
+	sirv_api_request = requests.post(endpoint, headers = headers, params = payload)
+
+	return sirv_api_request
+
+def read_folder_contents(access_token, dirname):
+	endpoint = base_url + "/v2/files/readdir"
+	headers = {"Content-Type" : "application/json", "authorization": "bearer {}".format(access_token)}
+	payload = {"dirname" : dirname}
+	sirv_api_request = convert(requests.get(endpoint, headers = headers, params = payload))
+
+	return sirv_api_request
+
+def get_product_meta(access_token, filename):
+	endpoint = base_url + "/v2/files/meta/product"
+	headers = {"Content-Type" : "application/json", "authorization": "bearer {}".format(access_token)}
+	payload = {"filename" : filename}
+	sirv_api_request = convert(requests.get(endpoint, headers = headers, params = payload))
+
+	return sirv_api_request
+
+def set_product_meta(access_token, filename, product_id, product_name, brand):
+	endpoint = base_url + "/v2/files/meta/product"
+	headers = {"Content-Type" : "application/json", "authorization": "bearer {}".format(access_token)}
+	payload = {"filename" : filename}
+	query = {"id" : product_id, "name" : product_name, "brand" : brand}
+	sirv_api_request = requests.post(endpoint, headers = headers, params = payload, json = query)
+
+	return sirv_api_request
+
+def get_file_info(access_token, filename):
+	endpoint = base_url + "/v2/files/stat"
+	headers = {"Content-Type" : "application/json", "authorization": "bearer {}".format(access_token)}
+	payload = {"filename" : filename}
+	sirv_api_request = convert(requests.get(endpoint, headers = headers, params = payload))
+
+	return sirv_api_request
+
+def get_jwt_url(access_token, filename, expiry):
+	endpoint = base_url + "/v2/files/jwt"
+	headers = {"Content-Type" : "application/json", "authorization": "bearer {}".format(access_token)}
+	payload = {"filename" : filename, "expiresIn" : expiry}
+	sirv_api_request = convert(requests.post(endpoint, headers = headers, json = payload))
+
+	return sirv_api_request

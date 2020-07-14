@@ -3,7 +3,7 @@ SirvPy is a python library for accessing the Sirv REST API
 
 ## Installation:
 
-	pip install -i https://test.pypi.org/simple/ SirvPy==0.1.64
+	pip install -i https://test.pypi.org/simple/ SirvPy==0.1.65
 
 Import all SirvPy functions you'll need to use in your app.
 
@@ -133,3 +133,83 @@ Specify the video file you want to spin.
 **15: Convert spin to video**
 
 	convert_to_video(access_token)
+
+**16: Fetch image from URL**
+
+	fetch_url(access_token, url/to/image, "/path/to/upload/to/filename")
+
+**17: Get folder options**
+
+This feature will work for users with enterprise accounts only
+
+	get_folder_options(access_token, "/path/to/file")
+
+**18: Set folder options**
+
+	set_folder_options(access_token, "/path/to/file")
+
+**19: Get meta description**
+
+	get_meta_description(access_token, "/path/to/file")
+
+**20: Set meta description**
+
+	get_meta_description(access_token, "/path/to/file", description)
+
+**21: Get meta title**
+
+	get_meta_title(access_token, "/path/to/file")
+
+**22: Set meta title**
+
+	get_meta_title(access_token, "/path/to/file", title)
+
+**23: Get file meta tags**
+
+	get_file_meta_tags(access_token, "/path/to/file")
+
+**24: Add file meta tags**
+
+	add_file_meta_tags(access_token, "/path/to/file", ["list", "of", "tags"])
+
+**25: Delete file meta tags**
+
+	delete_file_meta_tags(access_token, "/path/to/file", ["list", "of", "tags"])
+
+**26: Get approval flag**
+
+	get_approval_flag(access_token, "/path/to/file")
+
+**27: Set approval flag**
+	
+	set_approval_flag(access_token, "/path/to/file", approved, comment)
+
+approved is boolean; True or False
+
+**28: Delete file or empty directory**
+
+	delete_file(access_token, "/path/to/file")
+
+**29: Copy file**
+
+	copy_file(access_token, "/file/to/copy", "/path/to/copy/to")
+
+**30: Read folder Contents**
+
+	read_folder_contents(access_token, "/path/to/dir")
+
+**31: Get product meta**
+	
+	get_product_meta(access_token, "/path/to/file")
+
+**32: Set Product meta**
+
+	set_product_meta(access_token, "/path/to/file")
+
+**33: Get file info**
+
+**34: Get JWT protected url**
+	
+	get_jwt_url(access_token, "/path/to/file", expiry)
+
+expiry is number of seconds
