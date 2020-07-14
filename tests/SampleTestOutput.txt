@@ -1,0 +1,44 @@
+Unexpired token present; Retrieving...
+ token expires in 8.271760682264963 minutes
+ search_files test Success
+ storage_info test Success
+ storage_stats test Success
+ account_info test Success
+ get_users test Success
+ get_limits test Success
+ billing_info test Success
+ transfer_stats test Success
+ account_events test Success
+ get_user_info test Success
+ get_spin_views test Success
+ fetch_url test Success
+ jwt test Success
+ file_info test Success
+ read_folder_contents test Success
+ add_file_meta_tags test Success
+ get_file_meta_tags test Success
+ delete_file_meta_tag test Success
+ set_meta_title test Success
+ get_meta_title test Success
+ set_folder_options test Success
+ get_folder_options test Success
+ set_approval_flag test Success
+ get_approval_flag test Success
+ set_product_meta test Success
+ get_product_meta test Success
+User passed a File Path
+Successfully uploaded file
+ upload_file test Success
+ convert_to_spin test Success
+ convert_to_video test Success
+ set_meta_description test Success
+ get_meta_description test Success
+ copy_file test Success
+ delete_file test Success
+ update_account_info test Success
+ remote_fetching test Success
+
+***************************
+35 Tests completed with 0 errors
+***************************
+>>> 
