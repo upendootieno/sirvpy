@@ -3,7 +3,7 @@ SirvPy is a python library for accessing the Sirv REST API
 
 ## Installation:
 
-	pip install -i https://test.pypi.org/simple/ SirvPy==0.1.65
+	pip install -i https://test.pypi.org/simple/ SirvPy==1.0
 
 Import all SirvPy functions you'll need to use in your app.
 
@@ -213,3 +213,15 @@ approved is boolean; True or False
 	get_jwt_url(access_token, "/path/to/file", expiry)
 
 expiry is number of seconds
+
+**35: Update Account Info**
+
+	update_account_info(access_token, minify)
+
+Minify is boolean; True or False
+
+**36: Remote Fetching**
+
+	Remote_fetching(access_token, enabled)
+
+Enabled is boolean; True or False

@@ -309,3 +309,19 @@ def get_jwt_url(access_token, filename, expiry):
 	sirv_api_request = convert(requests.post(endpoint, headers = headers, json = payload))
 
 	return sirv_api_request
+
+def update_account_info(access_token, minify):
+	endpoint = base_url + "/v2/account"
+	headers = {"Content-Type" : "application/json", "authorization": "bearer {}".format(access_token)}
+	payload = {"minify" :  {"enabled" : minify}} 
+	sirv_api_request = requests.post(endpoint, headers = headers, json = payload)
+
+	return sirv_api_request
+
+def remote_fetching(access_token, enabled):
+	endpoint = base_url + "/v2/account/fetching"
+	headers = {"Content-Type" : "application/json", "authorization": "bearer {}".format(access_token)}
+	payload = {"enabled" :  enabled} 
+	sirv_api_request = requests.post(endpoint, headers = headers, json = payload)
+
+	return sirv_api_request
