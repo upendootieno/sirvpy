@@ -3,6 +3,8 @@ import time
 import json #for parsing str into dict
 import ast #for parsing single quote "json" to dict
 
+import re
+
 base_url = "https://api.sirv.com"
 
 #This function converts the response returned by API call to dict
@@ -41,11 +43,12 @@ def upload_files(access_token, local_file, upload_path):
 		print("User passed a File Path")
 		open_file = open(local_file, 'rb')
 		sirv_api_request = requests.post(endpoint, headers = headers, data = open_file, params = upload_path)
-	elif str(local_file.__class__) == "<class 'django.core.files.uploadedfile.InMemoryUploadedFile'>":
+	elif re.match("<class 'django.core.files", str(local_file.__class__)):
 		print("User passed a django uploadfile")
 		sirv_api_request = requests.post(endpoint, headers = headers, data = local_file, params = upload_path)
 	else:
 		print("Unsupported file source")
+		return
 
 	if sirv_api_request.status_code == 200:
 		print("Successfully uploaded file")
